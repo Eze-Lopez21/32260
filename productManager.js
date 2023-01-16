@@ -24,8 +24,12 @@ class ProductManager{
         };
     };
     async getProducts(){
+        try {
             const data = await fs.promises.readFile(this.file, "utf-8");
             return JSON.parse(data);
+        } catch (error) {
+            console.log(error);
+        }
     };
     async getProductById(id){
             const getData = await this.getProducts();
