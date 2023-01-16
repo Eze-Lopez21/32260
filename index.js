@@ -1,46 +1,46 @@
-class ProductManager{
-    constructor(){
-        this.products = [];
+const ProductManager = require('./productManager');
+
+const manager = new ProductManager('products.json');
+
+const main = async () => {
+    let product1 = {
+        title: "Hamburguesa Simple",
+        description: "Hambuerguesa de una carne con queso, sin ningún condimento especial añadido.",
+        price: 200,
+        thumbnail: '-',
+        code: "123",
+        stock: 30,
     };
-    getId(){
-        return this.products.length + 1;
-    }
-    addProduct(title, description, price, thumbnail, code, stock){
-        // compruebo que el codigo no sea repetido
-        if (this.products.some(product => product.code == code)){
-            console.log("Codigo ya existente.")
-        } else {
-            // compruebo que el usuario complete todos los campos
-            if (title && description && price && thumbnail && code && stock){
-                let newProduct = {
-                    id: this.getId(),
-                    title,
-                    description,
-                    price,
-                    thumbnail,
-                    code,
-                    stock
-                };
-                this.products.push(newProduct);
-            } else {
-                console.log("Por favor, complete todos los campos.")
-            };
-        };
+    let product2 = {
+        title: "Hamburguesa Completa",
+        description: "Hambuerguesa de dos carnes con queso, lechuga, tomate y la salsa especial Sazón.",
+        price: 300,
+        thumbnail: '-',
+        code: "456",
+        stock: 20,
     };
-    getProducts(){
-        return this.products;
+    let product3 = {
+        title: "Hamburguesa Bacon",
+        description: "Hambuerguesa de dos carnes, queso cheddar y una lluvia de bacon, con salsa barbecue y la salsa especial Sazón.",
+        price: 350,
+        thumbnail: '-',
+        code: "789",
+        stock: 20,
     };
-    getProductById(id){
-        if (this.products.find(product => product.id == id)){
-            return;
-        } else {
-            console.error("Not found")
-        };
+    let product4 = {
+        title: "Hamburguesa Triple",
+        description: "Hambuerguesa de tres carnes con queso, lechuga, tomate, bacon y la salsa especial Sazón.",
+        price: 400,
+        thumbnail: '-',
+        code: "101",
+        stock: 15,
     };
+
+    await manager.addProduct(product1)
+    await manager.addProduct(product2)
+    await manager.addProduct(product3)
+    await manager.addProduct(product4)
+    console.log(await manager.getProducts())
 };
 
-const manager = new ProductManager();
-manager.addProduct("producto prueba", "Este es un producto prueba", 200, "Sin Imagen", "abc123", 25)
-// console.log(manager.getProducts())
-manager.addProduct("otro producto prueba", "Este es un producto prueba", 300, "Sin Imagen", "def456", 20)
-console.log(manager.getProducts())
+main()
