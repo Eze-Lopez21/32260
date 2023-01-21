@@ -18,14 +18,14 @@ class ProductManager{
         try {
             const getData = await this.getProducts();
             getData.push({ ...product, id: await this.getId() });
-            await fs.promises.writeFile(this.file, JSON.stringify(getData));
+            await fs.promises.writeFile(this.products, JSON.stringify(getData));
         } catch (error) {
             console.log(error);
         };
     };
     async getProducts(){
         try {
-            const data = await fs.promises.readFile(this.file, "utf-8");
+            const data = await fs.promises.readFile(this.products, "utf-8");
             return JSON.parse(data);
         } catch (error) {
             console.log(error);
@@ -41,7 +41,7 @@ class ProductManager{
             const findId = getData.findIndex(productId => productId.id === id) //
             product.id = id
             getData.splice(findId, 1, product) //
-            await fs.promises.writeFile(this.file, JSON.stringify(getData))
+            await fs.promises.writeFile(this.products, JSON.stringify(getData))
         } catch (error) {
             console.log(error);
         };
@@ -49,7 +49,7 @@ class ProductManager{
     async deleteProduct(id){
         const getData = await this.getProducts();
         const filterData = getData.filter(product => product.id !== id);
-        await fs.promises.writeFile(this.file, JSON.stringify(filterData));
+        await fs.promises.writeFile(this.products, JSON.stringify(filterData));
     };
 };
 
