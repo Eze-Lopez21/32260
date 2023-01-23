@@ -1,0 +1,24 @@
+{
+  "name": "32260",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eze-Lopez21/32260.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Eze-Lopez21/32260/issues"
+  },
+  "homepage": "https://github.com/Eze-Lopez21/32260#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
